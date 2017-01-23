@@ -1,56 +1,124 @@
-# GRUB2 gfxmenu Archlinux theme.
+# GRUB2 gfxmenu Flexible theme.
 # Designed for 1024x768 resolution.
 # Created by American_Jesus
+# Forked by Raphael
 
-# Global Property
+# Background image
+desktop-image: "background.png"
+
+# The title of the GRUB menu ( For reference visit:  )
 title-text: ""
-title-font: "Sans Regular 12"
-title-color: "#000000"
-message-font: "Fixed Regular 13"
-message-color: "#FFFFFF"
-message-bg-color: "#f6f6f6"
-desktop-color: "#000000"
-terminal-box: "menu_bkg_*.png"
-terminal-font: "Fixed Regular 13"
+
+# Font specification of the above title
+title-font: "DejaVu Sans Regular 12"
+
+# Color Specification of the above title
+title-color: "#fff"
+
+# The boundary shape and center of the terminal box that appears after selecting an OS
+# Provided by the png files present in the same directory as this file
+# North = terminal_box_n.png
+# North-East = terminal_box_ne.png
+# Center = terminal_box_c.png
+terminal-box: "terminal_box_*.png"
+
+# The font used across the GRUB menu
+terminal-font: "Gnu Unifont Mono Regular 16"
 
 # Show the boot menu
 + boot_menu {
-		left = 30%
-		width = 40%
-		top = 150
-		height = 50%
-		item_font = "Sans Regular 12"
-		selected_item_font = "Sans Regular 14"
-		item_color = "#5698fc"
-		selected_item_color = "#5698fc"
+
+        # Gap between the left side of the screen and the left of the GRUB menu
+        # This is equal to ( 100% - width )/2
+		left = 10%
+
+        # The maximum width of the whole menu
+		width = 80%
+
+        # Gap between the top of the screen and the top of the GRUB menu
+		top = 20%
+
+        # Height of the GRUB menu
+		height = 60%
+
+        # Font for the names of the OSes shown in the GRUB menu ( unselected )
+		item_font = "DejaVu Sans Regular 12"
+		
+        # Color of the names of the OSes shown in the GRUB menu ( unselected )
+        item_color = "#fff"
+
+        # Font for the names of the OSes shown in the GRUB menu ( selected )
+		selected_item_font = "DejaVu Sans Bold 14"
+        
+        # Color of the names of the OSes shown in the GRUB menu ( selected )
+		selected_item_color = "#fff"
+
+        # For reference visit ( http://wiki.rosalab.ru/en/index.php/Grub2_theme_tutorial#item_color.2C_item_font.2C_selected_item_color.2C_selected_item_font_-_font_and_color_of_boot_menu_items )
 		item_height = 38
 		item_padding = 15
 		item_spacing = 5
 		icon_width = 32
 		icon_height = 32
 		item_icon_space = 20
-		selected_item_pixmap_style= "select_bkg_*.png"
-		menu_pixmap_style = "menu_bkg_*.png"
-		scrollbar = true
-		scrollbar_width = 24
-		scrollbar_thumb = "sb_thumb_*.png"
-		scrollbar_frame = "sb_frame_*.png"
+		
+
+        # The boundary shape and center of the selected name of OS.
+        # Provided by the png files present in the same directory as this file
+        # North = select_n.png
+        # North-East = select_ne.png
+        # Center = select_c.png
+        selected_item_pixmap_style= "select_*.png"
+		
+        # Should the scrollbar be shown
+        scrollbar = true
+
+        # Width of the scrollbar
+		scrollbar_width = 15
+
+        # The boundary shape and center of the scrollbar.
+        # Provided by the png files present in the same directory as this file
+        # North = slider_n.png
+        # Center = slider_c.png
+		scrollbar_thumb = "slider_*.png"
 }
 
 
 # Show logo and circular progress
 + circular_progress
 {
+
+    # Needed to show a type of action to represent the countdown timer
    id = "__timeout__"
-   left = 40
-   top = 150
+
+    # Gap between the left side of the screen and the left of the logo
+   left = 5%
+
+    # Gap between the top of the screen and the top of the logo
+   top = 5%
+
+    # Width of the logo
    width = 105
+
+    # Height of the logo
    height = 105
-   num_ticks = 33
+
+    # Number of ticks in a circular progress to make a full circle
+    # Set the value to something nth power of 2
+   num_ticks = 32
+
+    # Ticks will disappear after appearing and then continue to next tick
    ticks_disappear = false
-   start_angle = -67
-   end_angle = -67
+
+    # The starting angle. (starting from x-axis). 
+    # It's measured in "parrots". One "parrot" - 1/256 of the full circle. 
+    # That way -90 degree (or -π/2) will be -64 "parrots"
+   start_angle = -64
+   end_angle = -64
+
+    # The logo around which ticks will appear
    center_bitmap = "archlogo.png"
+
+    # Ticks image
    tick_bitmap = "tick.png"
 }
 
@@ -58,10 +126,10 @@ terminal-font: "Fixed Regular 13"
 + hbox {
 		top = 100%-35
 		left = 20%
-		+ label {text = "Enter: " font = "Sans 12" color = "#4c4c4c" align = "left"}
-		+ label {text = "Boot Selection     " font = "Sans 12" color = "#1692d0" align = "left"}
-		+ label {text = "E: " font = "Sans 12" color = "#4c4c4c" align = "left"}
-		+ label {text = "Edit Selection     " font = "Sans 12" color = "#1692d0" align = "left"}
-		+ label {text = "C: " font = "Sans 12" color = "#4c4c4c" align = "left"}
-		+ label {text = "GRUB Commandline" font = "Sans 12" color = "#1692d0" align = "left"}
+		+ label {text = "Enter: " font = "DejaVu Sans Regular 12" color = "#4c4c4c" align = "left"}
+		+ label {text = "Boot Selection     " font = "DejaVu Sans Regular 12" color = "#819a67" align = "left"}
+		+ label {text = "E: " font = "DejaVu Sans Regular 12" color = "#4c4c4c" align = "left"}
+		+ label {text = "Edit Selection     " font = "DejaVu Sans Regular 12" color = "#819a67" align = "left"}
+		+ label {text = "C: " font = "DejaVu Sans Regular 12" color = "#4c4c4c" align = "left"}
+		+ label {text = "GRUB Commandline" font = "DejaVu Sans Regular 12" color = "#819a67" align = "left"}
 }
