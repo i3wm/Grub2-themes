@@ -23,7 +23,7 @@ title-color: "#fff"
 terminal-box: "terminal_box_*.png"
 
 # The font used across the GRUB menu
-terminal-font: "Gnu Unifont Mono Regular 16"
+terminal-font: "Unifont Regular 16"
 
 # Show the boot menu
 + boot_menu {
